@@ -4,9 +4,9 @@ class Player : Character
     {
         { ConsoleKey.A, "moveLeft" },
         { ConsoleKey.D, "moveRight" },
-        { ConsoleKey.W, "moveUp" },
-        { ConsoleKey.S, "moveDown" },
-        { ConsoleKey.C, "clone" }
+        //{ ConsoleKey.W, "moveUp" },
+        //{ ConsoleKey.S, "moveDown" },
+        //{ ConsoleKey.C, "clone" }
     };
 
     public string chosenAction;

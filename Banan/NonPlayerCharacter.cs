@@ -8,8 +8,8 @@ class NonPlayerCharacter : Character
         {
             "moveLeft",
             "moveRight",
-            "moveUp",
-            "moveDown",
+            //"moveUp",
+            //"moveDown",
         };
     }
 

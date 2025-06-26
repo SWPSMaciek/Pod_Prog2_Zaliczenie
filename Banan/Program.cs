@@ -6,7 +6,7 @@ directionsMap.Add("moveRight", new Point(1, 0));
 directionsMap.Add("moveUp", new Point(0, -1));
 directionsMap.Add("moveDown", new Point(0, 1));
 
-Point startingPoint = new Point(13, 1);
+Point startingPoint = new Point(16, 16);
 Player hero = new Player("Snake", "@");
 hero.speed = 1;
 hero.position = startingPoint;
