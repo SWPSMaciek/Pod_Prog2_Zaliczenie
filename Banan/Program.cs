@@ -3,8 +3,8 @@
 Dictionary<string, Point> directionsMap = new Dictionary<string, Point>();
 directionsMap.Add("moveLeft", new Point(-1, 0));
 directionsMap.Add("moveRight", new Point(1, 0));
-directionsMap.Add("moveUp", new Point(0, -1));
-directionsMap.Add("moveDown", new Point(0, 1));
+//directionsMap.Add("moveUp", new Point(0, -1));
+//directionsMap.Add("moveDown", new Point(0, 1));
 
 Point startingPoint = new Point(16, 16);
 Player hero = new Player("Snake", "@");
@@ -40,13 +40,13 @@ while (true)
     {
         element.Display();
     }
-    
+
     int charactersAmount = characters.Count;
     for (int i = 0; i < charactersAmount; i++)
     {
         Character element = characters[i];
         element.Display();
-        
+
         string chosenAction = element.ChooseAction();
         if (!directionsMap.ContainsKey(chosenAction))
         {
@@ -65,11 +65,4 @@ while (true)
         Point direction = directionsMap[chosenAction];
         element.Move(direction, firstLevel);
     }
-}
-
-Console.WriteLine("Press Space to continue...");
-ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-while (keyInfo.Key != ConsoleKey.Spacebar)
-{
-    keyInfo = Console.ReadKey(true);
 }
