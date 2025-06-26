@@ -14,11 +14,14 @@ hero.position = startingPoint;
 List<Character> characters = new List<Character>();
 characters.Add(hero);
 
+Random rand = new Random();
 NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L");
-npc.position = new Point(5, 5);
+npc.position = new Point(rand.Next(12,16), rand.Next(2,3));
+NonPlayerCharacter npc2 = new NonPlayerCharacter("Mario", "M");
+npc2.position = new Point(rand.Next(16,30), rand.Next(1,6));
 
 characters.Add(npc);
-
+characters.Add(npc2);
 
 Level firstLevel = new Level();
 
@@ -40,7 +43,7 @@ while (true)
     {
         element.Display();
     }
-
+    
     int charactersAmount = characters.Count;
     for (int i = 0; i < charactersAmount; i++)
     {
