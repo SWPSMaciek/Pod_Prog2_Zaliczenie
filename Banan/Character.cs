@@ -4,7 +4,7 @@ abstract class Character
     public Point position;
     public int speed = 1;
     public string avatar;
-    public bool isDead = false;
+    public bool isDead = true;
 
     public Character(string name, string avatar)
     {
