@@ -5,7 +5,7 @@ class Player : Character
         { ConsoleKey.A, "moveLeft" },
         { ConsoleKey.D, "moveRight" },
         { ConsoleKey.Spacebar, "Shoot" },
-        //{ ConsoleKey.W, "moveUp" },
+        { ConsoleKey.T, "Teleport" },
         //{ ConsoleKey.S, "moveDown" },
     };
 
