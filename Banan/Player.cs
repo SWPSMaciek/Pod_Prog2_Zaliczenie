@@ -7,7 +7,6 @@ class Player : Character
         { ConsoleKey.Spacebar, "Shoot" },
         //{ ConsoleKey.W, "moveUp" },
         //{ ConsoleKey.S, "moveDown" },
-        //{ ConsoleKey.C, "clone" }
     };
 
     public string chosenAction;

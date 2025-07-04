@@ -4,6 +4,7 @@ abstract class Character
     public Point position;
     public int speed = 1;
     public string avatar;
+    public bool isDead = false;
 
     public Character(string name, string avatar)
     {
@@ -13,6 +14,8 @@ abstract class Character
 
     public void Move(Point direction, Level level)
     {
+        if (isDead) return;
+
         Point target = position;
 
         int signX = Math.Sign(direction.x);
@@ -52,6 +55,7 @@ abstract class Character
 
     public void Display()
     {
+        if (isDead) return;
         Console.SetCursorPosition(position.x, position.y);
         Console.Write(avatar);
     }

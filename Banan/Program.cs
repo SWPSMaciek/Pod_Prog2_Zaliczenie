@@ -6,6 +6,9 @@ directionsMap.Add("moveRight", new Point(1, 0));
 //directionsMap.Add("moveUp", new Point(0, -1));
 //directionsMap.Add("moveDown", new Point(0, 1));
 
+int currentLevelIndex = 0; // Set initial level index here
+Level currentLevel = new Level(currentLevelIndex);
+
 Point startingPoint = new Point(16, 16);
 Player hero = new Player("Snake", "@");
 hero.speed = 1;
@@ -16,16 +19,22 @@ characters.Add(hero);
 
 Random rand = new Random();
 NonPlayerCharacter npc = new NonPlayerCharacter("Liquid", "L");
-npc.position = new Point(rand.Next(12,16), rand.Next(2,3));
-NonPlayerCharacter npc2 = new NonPlayerCharacter("Mario", "M");
-npc2.position = new Point(rand.Next(16,30), rand.Next(1,6));
+npc.position = new Point(rand.Next(12, 16), rand.Next(2, 3));
+//NonPlayerCharacter npc2 = new NonPlayerCharacter("Mario", "M");
+//npc2.position = new Point(rand.Next(16, 30), rand.Next(1, 6));
 
-characters.Add(npc);
-characters.Add(npc2);
+if (npc.isDead == false)
+{
+    characters.Add(npc);
+}
 
-Level firstLevel = new Level();
+if (npc.isDead == true)
+{
+    currentLevelIndex++;
+    currentLevel = new Level(currentLevelIndex);
+}
 
-firstLevel.Display();
+currentLevel.Display();
 
 foreach (Character element in characters)
 {
@@ -43,7 +52,7 @@ while (true)
     {
         element.Display();
     }
-    
+
     int charactersAmount = characters.Count;
     for (int i = 0; i < charactersAmount; i++)
     {
@@ -53,19 +62,14 @@ while (true)
         string chosenAction = element.ChooseAction();
         if (!directionsMap.ContainsKey(chosenAction))
         {
-            if (chosenAction == "clone")
+            if (chosenAction == "Shoot" && npc.position.x == hero.position.x)
             {
-                PlayerClone clone = new PlayerClone(hero, "C");
-                clone.position = startingPoint;
-                characters.Add(clone);
+                npc.isDead = true;
             }
-
             continue;
         }
-
-        firstLevel.RedrawCell(element.position);
-
+        currentLevel.RedrawCell(element.position);
         Point direction = directionsMap[chosenAction];
-        element.Move(direction, firstLevel);
+        element.Move(direction, currentLevel);
     }
 }
