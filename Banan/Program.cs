@@ -28,14 +28,8 @@ if (npc.isDead == false)
     characters.Add(npc);
 }
 
-if (npc.isDead == true)
-{
-    currentLevelIndex++;
-    currentLevel = new Level(currentLevelIndex);
-}
 
 currentLevel.Display();
-
 foreach (Character element in characters)
 {
     element.Display();
@@ -47,6 +41,18 @@ while (true)
 {
     Console.SetCursorPosition(12, 0);
     Console.Write(hero.speed);
+
+    if (npc.isDead == true)
+    {
+        if (currentLevelIndex < 5)
+        {
+            currentLevelIndex++;
+            currentLevel = new Level(currentLevelIndex);
+            currentLevel.Display();
+            npc.isDead = false;
+        }
+
+    }
 
     foreach (Character element in characters)
     {
