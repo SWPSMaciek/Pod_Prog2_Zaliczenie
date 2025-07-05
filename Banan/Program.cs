@@ -6,7 +6,8 @@ directionsMap.Add("moveRight", new Point(1, 0));
 //directionsMap.Add("moveUp", new Point(0, -1));
 //directionsMap.Add("moveDown", new Point(0, 1));
 
-int currentLevelIndex = 0; // Set initial level index here
+int currentLevelIndex = 0;
+int prewiousLevelIndex = 0;
 Level currentLevel = new Level(currentLevelIndex);
 
 Point startingPoint = new Point(16, 16);
@@ -23,20 +24,10 @@ NonPlayerCharacter npc = new NonPlayerCharacter("Wario", "W");
 npc.position = new Point(rand.Next(11, 22), 2);
 npc.isDead = false; // Ensure npc2 is not dead
 NonPlayerCharacter npc2 = new NonPlayerCharacter("Mario", "M");
-npc2.position = new Point(rand.Next(16, 30), 3);
 NonPlayerCharacter npc3 = new NonPlayerCharacter("Yoshi", "Y");
-npc3.position = new Point(rand.Next(16, 30), 4);
 NonPlayerCharacter npc4 = new NonPlayerCharacter("Toad", "T");
-npc4.position = new Point(rand.Next(16, 30), 5);
 NonPlayerCharacter npc5 = new NonPlayerCharacter("Thwomp ", "H");
-npc5.position = new Point(rand.Next(16, 30), 6);
-
 characters.Add(npc);
-characters.Add(npc2);
-characters.Add(npc3);
-characters.Add(npc4);
-characters.Add(npc5);
-
 
 currentLevel.Display();
 foreach (Character element in characters)
@@ -50,68 +41,7 @@ while (true)
 {
     Console.SetCursorPosition(0, 0);
 
-    bool AllNpcIsDead = true;
-    bool TimeForNextLevel = false;
-    foreach (var character in characters)
-    {
-        if (character is NonPlayerCharacter npcChar && !npcChar.isDead)
-        {
-            AllNpcIsDead = false;
-            break;
-        }
-    }
-
-    if (AllNpcIsDead == true && currentLevelIndex < 5)
-    {
-        currentLevelIndex++;
-        TimeForNextLevel = true;
-    }
-
-    if (TimeForNextLevel == true)
-    {
-        switch (currentLevelIndex)
-        {
-            case 1:
-                currentLevel = new Level(1);
-                currentLevel.Display();
-                npc.isDead = false;
-                npc2.isDead = false;
-                break;
-            case 2:
-                currentLevel = new Level(2);
-                currentLevel.Display();
-                npc.isDead = false;
-                npc2.isDead = false;
-                npc3.isDead = false;
-                break;
-            case 3:
-                currentLevel = new Level(3);
-                currentLevel.Display();
-                npc.isDead = false;
-                npc2.isDead = false;
-                npc3.isDead = false;
-                npc4.isDead = false;
-                break;
-            case 4:
-                currentLevel = new Level(4);
-                currentLevel.Display();
-                npc.isDead = false;
-                npc2.isDead = false;
-                npc3.isDead = false;
-                npc4.isDead = false;
-                npc5.isDead = false;
-                break;
-            case 5:
-                currentLevel = new Level(5);
-                currentLevel.Display();
-                npc.isDead = true;
-                npc2.isDead = true;
-                npc3.isDead = true;
-                npc4.isDead = true;
-                npc5.isDead = true;
-                break;
-        }
-    }
+    currentLevel.LevelSelect(ref prewiousLevelIndex, ref currentLevelIndex, ref currentLevel, characters, hero, npc, npc2, npc3, npc4, npc5, rand);
 
     foreach (Character element in characters)
     {
